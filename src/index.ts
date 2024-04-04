@@ -66,7 +66,12 @@ app.post('/books', express.json(), async function (req, res, next) {
 });
 
 app.get('/users', async function (req, res) {
-  const allUsers = await prisma.user.findMany();
+  const allUsers = await prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+    },
+  });
   
   res.json(allUsers);
 });
@@ -341,7 +346,7 @@ app.post('/users/:userId/return/:bookId', express.json(), async function (req, r
     },
   });
 
-  res.json(true);
+  res.json();
 });
 
 // @ts-ignore

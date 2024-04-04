@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "migrate": "npx prisma migrate dev",
-    "build": "npx tsc & npx prisma generate",
+    "prebuild": "npx prisma generate",
+    "build": "npx tsc",
     "prestart": "npm run build",
     "start": "node dist/index.js"
   },
